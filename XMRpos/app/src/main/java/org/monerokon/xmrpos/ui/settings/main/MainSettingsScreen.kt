@@ -1,6 +1,8 @@
 // MainSettingsScreen.kt
 package org.monerokon.xmrpos.ui.settings.main
 
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
@@ -11,6 +13,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
@@ -39,6 +42,24 @@ fun MainSettingsScreen(
     navigateToBackend: () -> Unit,
     navigateToPrinterSettings: () -> Unit
 ) {
+    val context = LocalContext.current
+    val versionName = remember(context.packageName) {
+        try {
+            val packageManager = context.packageManager
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                packageManager
+                    .getPackageInfo(
+                        context.packageName,
+                        PackageManager.PackageInfoFlags.of(0)
+                    ).versionName.orEmpty()
+            } else {
+                @Suppress("DEPRECATION")
+                packageManager.getPackageInfo(context.packageName, 0)?.versionName.orEmpty()
+            }
+        } catch (ignored: PackageManager.NameNotFoundException) {
+            ""
+        }
+    }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -54,7 +75,14 @@ fun MainSettingsScreen(
                     }
                 },
                 title = {
-                    Text("Settings")
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("Settings")
+                        Text("v$versionName")
+                    }
                 }
             )
         },
@@ -110,4 +138,3 @@ fun SettingsCard(
         }
     }
 }
-

@@ -162,7 +162,7 @@ fun QRCodeWithImage(uri: String, generateQRCode: (String, Int, Int, Int, Int, In
         Image(
             painterResource(R.drawable.monero_symbol),
             contentDescription = null,
-            modifier = Modifier.requiredSize(80.dp),
+            modifier = Modifier.requiredSize(72.dp),
         )
 
     }

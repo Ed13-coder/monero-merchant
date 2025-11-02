@@ -350,28 +350,25 @@ fun PaymentEntryControlButtons(
 ) {
     Row(
         modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally)
     ) {
         PaymentEntryControlButton(
             icon = Icons.Rounded.Clear,
             contentDescription = "Clear",
             onClick = onClearClick,
-            containerColor = Color(0xFFFF5555),
-            modifier = Modifier.weight(1f)
+            containerColor = Color(0xFFFF5555)
         )
         PaymentEntryControlButton(
             icon = Icons.AutoMirrored.Rounded.ArrowBack,
             contentDescription = "Back",
             onClick = onBackspaceClick,
-            containerColor = Color(0xFFF1FA8C),
-            modifier = Modifier.weight(1f)
+            containerColor = Color(0xFFF1FA8C)
         )
         PaymentEntryControlButton(
             icon = Icons.Rounded.Done,
             contentDescription = "Done",
             onClick = onSubmitClick,
-            containerColor = Color(0xFF50FA7B),
-            modifier = Modifier.weight(1f)
+            containerColor = Color(0xFF50FA7B)
         )
     }
 }
