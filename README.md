@@ -56,7 +56,7 @@ sudo ./install.sh clean
 Removes all containers, cloned repositories, and `~/wallets`.
 **Always back up your wallets** before cleaning.
 
-> For detailed backend API usage, see [`XMRpos-backend/README.md`](XMRpos/XMRpos-backend/README.md).
+> For detailed backend API usage, see [`XMRpos-backend/README.md`](XMRpos-backend/README.md).
 
 ---
 
